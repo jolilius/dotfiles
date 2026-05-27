@@ -33,6 +33,14 @@ bindkey -v
 # Aliases
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "WIP"'
 
+# eza (modern ls)
+alias ls='eza --icons=auto'
+alias l='eza -l --icons=auto'
+alias ll='eza -l --git --icons=auto'
+alias la='eza -la --git --icons=auto'
+alias lt='eza --tree --icons=auto'
+alias llt='eza -la --tree --git --icons=auto'
+
 # zoxide (z command for directory jumping)
 eval "$(zoxide init zsh)"
 
