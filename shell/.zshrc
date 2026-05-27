@@ -33,5 +33,8 @@ bindkey -v
 # Aliases
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "WIP"'
 
+# zoxide (z command for directory jumping)
+eval "$(zoxide init zsh)"
+
 # Prompt
 eval "$(starship init zsh)"
