@@ -10,8 +10,6 @@ stow -d "$DOTFILES_DIR" -t ~ shell
 stow -d "$DOTFILES_DIR" -t ~ editor
 stow -d "$DOTFILES_DIR" -t ~ git
 stow -d "$DOTFILES_DIR" -t ~ tools
-
-# Terminal emulators
 stow -d "$DOTFILES_DIR" -t ~ terminal
 
 # Platform-specific
