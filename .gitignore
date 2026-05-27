@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+*~
+
+# System
+.vscode/
+.idea/
+
+# Generated/runtime
+chroma_db/
+.cache/
