@@ -13,3 +13,7 @@
 # Generated/runtime
 chroma_db/
 .cache/
+__pycache__/
+*.pyc
+*.bak
+automatic_backups/

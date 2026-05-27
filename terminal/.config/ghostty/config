@@ -1,0 +1,8 @@
+font-family = "Firacode Nerd Font Mono"
+theme = "Catppuccin Mocha"
+window-height=30
+window-width=110
+font-size=14
+font-feature=-liga
+font-thicken=true
+keybind = shift+enter=text:\x1b\r
