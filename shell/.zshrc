@@ -1,6 +1,8 @@
 # PATH
 export PATH=$HOME/.bin:$HOME/bin:/usr/local/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Prefer gsed over sed
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
