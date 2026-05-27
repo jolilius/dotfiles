@@ -1,5 +1,7 @@
-# If you come from bash you might have to change your $PATH.
+#modload zsh/zprof
+# If you come fro+m bash you might have to change your $PATH.
 export PATH=$HOME/.bin:$HOME/bin:/usr/local/bin:$PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Prefer gsed over sed
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
@@ -41,48 +43,48 @@ source $(brew --prefix)/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
+#antigen bundle git
 #antigen bundle tmux
-#antigen bundle tmuxinator
-antigen bundle chucknorris
-antigen bundle colorize
-antigen bundle common-aliases
-antigen bundle dircycle
-antigen bundle dirhistory
+##antigen bundle tmuxinator
+#antigen bundle chucknorris
+#antigen bundle colorize
+#antigen bundle common-aliases
+#antigen bundle dircycle
+#antigen bundle dirhistory
 # antigen bundle fzf
-antigen bundle gitfast
-antigen bundle history
-antigen bundle zsh-history-substring-search
-antigen bundle ripgrep
-antigen bundle thefuck
-antigen bundle iterm2
-antigen bundle zsh-autosuggestions
-antigen bundle zsh-syntax-highlighting
-antigen bundle vi-mode
-antigen bundle agkozak/zsh-z
+#antigen bundle gitfast
+#antigen bundle history
+#antigen bundle zsh-history-substring-search
+#antigen bundle ripgrep
+#antigen bundle thefuck
+#antigen bundle iterm2
+#antigen bundle zsh-autosuggestions
+#antigen bundle zsh-syntax-highlighting
+#antigen bundle vi-mode
+#antigen bundle agkozak/zsh-z
 
 # Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+#antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Powerlevel10k
-antigen theme romkatv/powerlevel10k
+#antigen theme romkatv/powerlevel10k
 
 
 # bunlde for oding
 # antigen bundle ttscoff/doing
 
 # Load the theme.
-antigen theme robbyrussell
+#antigen theme robbyrussel
 
 # Tell Antigen that you're done.
 antigen apply
 
 
-autoload -U compinit && compinit
+#autoload -U compinit && compinit
 
 
 # Disable git pager
-GIT_PAGER=""
+G
 
 # Configuration for Kitty
 #autoload -Uz compinit
@@ -102,15 +104,13 @@ alias czev="chezmoi edit ~/.vimrc; chemzoi apply"
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "WIP"'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh  ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh  ]] || source ~/.p10k.zsh
 
 # Set vim mode
 bindkey -v
 
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 # eval "$(rbenv init - zsh)"
 
-
-# Created by `pipx` on 2025-01-03 15:41:37
-export PATH="$PATH:/Users/jolilius/.local/bin"
+#zprof
