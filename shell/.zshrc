@@ -33,6 +33,11 @@ bindkey -v
 # Aliases
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "WIP"'
 
+# less / bat
+alias m='less'
+alias cat='bat --paging=never'
+alias b='bat'
+
 # eza (modern ls)
 alias ls='eza --icons=auto'
 alias l='eza -l --icons=auto'
