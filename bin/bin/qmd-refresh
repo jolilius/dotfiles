@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Keeps the QMD search index up to date.
+# Runs: qmd update (BM25 re-index) + qmd embed (vector embeddings)
+# Sundays also: qmd cleanup (vacuum DB)
+
+set -uo pipefail
+
+QMD=/opt/homebrew/bin/qmd
+LOG="${HOME}/.cache/qmd/refresh.log"
+LOCK="/tmp/qmd-refresh.pid"
+
+# PID-file lock — macOS doesn't ship flock
+if [[ -f "$LOCK" ]]; then
+    OLD_PID=$(cat "$LOCK")
+    if kill -0 "$OLD_PID" 2>/dev/null; then
+        echo "[$(date -Iseconds)] already running (PID $OLD_PID), skipping" >> "$LOG"
+        exit 0
+    fi
+fi
+echo $$ > "$LOCK"
+trap 'rm -f "$LOCK"' EXIT INT TERM
+
+log() { echo "[$(date -Iseconds)] $*" >> "$LOG"; }
+
+log "=== start (PID $$) ==="
+
+if $QMD update >> "$LOG" 2>&1; then
+    log "update done"
+else
+    log "update finished with errors (exit $?) — continuing to embed"
+fi
+
+if $QMD embed --max-batch-mb 300 >> "$LOG" 2>&1; then
+    log "embed done"
+else
+    log "embed finished with errors (exit $?)"
+fi
+
+if [[ $(date +%u) -eq 7 ]]; then
+    $QMD cleanup >> "$LOG" 2>&1 && log "cleanup done"
+fi
+
+log "=== done ==="

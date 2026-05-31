@@ -11,11 +11,15 @@ stow -d "$DOTFILES_DIR" -t ~ editor
 stow -d "$DOTFILES_DIR" -t ~ git
 stow -d "$DOTFILES_DIR" -t ~ tools
 stow -d "$DOTFILES_DIR" -t ~ terminal
+stow -d "$DOTFILES_DIR" -t ~ bin
 
 # Platform-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "🍎 macOS detected"
-    # Add macOS-specific packages here if needed
+    stow -d "$DOTFILES_DIR" -t ~ launchd
+    echo "  Loading QMD LaunchAgents..."
+    launchctl load -w ~/Library/LaunchAgents/com.qmd.update.plist
+    launchctl load -w ~/Library/LaunchAgents/com.qmd.refresh.plist
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "🐧 Linux detected"
     # Add Linux-specific packages here if needed
