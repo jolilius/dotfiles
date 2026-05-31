@@ -24,6 +24,14 @@ log() { echo "[$(date -Iseconds)] $*" >> "$LOG"; }
 
 log "=== start (PID $$) ==="
 
+# Normalize Readwise filenames before indexing
+NORMALIZE="${HOME}/bin/normalize-readwise"
+if [[ -x "$NORMALIZE" ]]; then
+    "$NORMALIZE" && log "normalize-readwise done"
+else
+    log "normalize-readwise not found or not executable, skipping"
+fi
+
 if $QMD update >> "$LOG" 2>&1; then
     log "update done"
 else
