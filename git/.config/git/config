@@ -22,3 +22,5 @@
 
 [include]
 	path = ~/.config/git/local
+[url "git@github.com:"]
+	insteadOf = https://github.com/
