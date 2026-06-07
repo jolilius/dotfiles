@@ -13,6 +13,19 @@ if ! command -v qmd >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
     npm install -g @tobilu/qmd
 fi
 
+# ekctl (Calendar/Reminders CLI) - its Homebrew formula builds from source and
+# requires the full Xcode app (not just the Command Line Tools), so it can't be
+# installed unattended via the Brewfile.
+if command -v brew >/dev/null 2>&1 && ! command -v ekctl >/dev/null 2>&1; then
+    if [[ -d "/Applications/Xcode.app" ]]; then
+        echo "📅 Installing ekctl..."
+        brew install schappim/ekctl/ekctl
+    else
+        echo "⚠️  Skipping ekctl: requires the full Xcode app (not just Command Line Tools)."
+        echo "   Install Xcode from the App Store, then run: brew install schappim/ekctl/ekctl"
+    fi
+fi
+
 echo "🤖 Installing Claude skills..."
 
 # QMD skill (bundled with the qmd CLI)
