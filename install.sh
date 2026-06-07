@@ -13,6 +13,19 @@ if ! command -v qmd >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
     npm install -g @tobilu/qmd
 fi
 
+echo "🤖 Installing Claude skills..."
+
+# QMD skill (bundled with the qmd CLI)
+if command -v qmd >/dev/null 2>&1 && [[ ! -e "$HOME/.agents/skills/qmd" ]]; then
+    qmd skill install --global --yes
+fi
+
+# ekctl skill (Calendar/Reminders), distributed as a Claude plugin marketplace
+if command -v claude >/dev/null 2>&1; then
+    claude plugin marketplace add schappim/ekctl-skill
+    claude plugin install ekctl-skill@ekctl-skill
+fi
+
 echo "🔗 Installing dotfiles with stow..."
 
 # Core packages (cross-platform)

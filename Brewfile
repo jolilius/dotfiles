@@ -19,3 +19,7 @@ brew "git-delta"
 brew "gh"
 brew "neovim"
 brew "mermaid-cli"
+
+# Calendar/Reminders CLI used by the ekctl Claude skill
+tap "schappim/ekctl"
+brew "schappim/ekctl/ekctl"
