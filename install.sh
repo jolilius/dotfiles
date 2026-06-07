@@ -3,6 +3,16 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+if command -v brew >/dev/null 2>&1; then
+    echo "🍺 Installing Homebrew dependencies..."
+    brew bundle --file="$DOTFILES_DIR/Brewfile"
+fi
+
+if ! command -v qmd >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+    echo "📦 Installing qmd (https://github.com/tobi/qmd)..."
+    npm install -g @tobilu/qmd
+fi
+
 echo "🔗 Installing dotfiles with stow..."
 
 # Core packages (cross-platform)
@@ -18,8 +28,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "🍎 macOS detected"
     stow -d "$DOTFILES_DIR" -t ~ launchd
     echo "  Loading QMD LaunchAgents..."
-    launchctl load -w ~/Library/LaunchAgents/com.qmd.update.plist
-    launchctl load -w ~/Library/LaunchAgents/com.qmd.refresh.plist
+    for label in com.qmd.update com.qmd.refresh; do
+        launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
+        launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/$label.plist"
+    done
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "🐧 Linux detected"
     # Add Linux-specific packages here if needed
