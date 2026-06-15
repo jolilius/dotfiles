@@ -20,6 +20,7 @@ stow editor       # nvim, vim configuration
 stow terminal     # kitty, ghostty, alacritty configuration
 stow tools        # karabiner, aerospace, bat, starship, etc.
 stow git          # git configuration
+stow homebrew     # Brewfile (Homebrew packages, casks, taps)
 ```
 
 ## Directory Structure
@@ -31,6 +32,7 @@ stow git          # git configuration
 ├── terminal/     # Terminal emulators (.config/kitty, .config/ghostty, etc.)
 ├── tools/        # Tool configs (.config/karabiner, .config/aerospace, .config/starship.toml, etc.)
 ├── git/          # Git configuration (.config/git)
+├── homebrew/     # Homebrew Brewfile (.config/homebrew/Brewfile)
 ├── install.sh    # Automated installation script
 └── README.md     # This file
 ```
@@ -42,6 +44,7 @@ GNU Stow creates symlinks from this directory to your home directory. For exampl
 - `shell/.zshrc` → `~/.zshrc`
 - `editor/.config/nvim/init.lua` → `~/.config/nvim/init.lua`
 - `tools/.config/starship.toml` → `~/.config/starship.toml`
+- `homebrew/.config/homebrew/Brewfile` → `~/.config/homebrew/Brewfile`
 
 ### Unstalling a Package
 
@@ -69,7 +72,8 @@ stow -D editor    # Remove editor package
    ./install.sh
    ```
 
-3. Start a new shell session to load the configurations
+3. Start a new shell session to load the configurations. `install.sh` already installed all Homebrew
+   packages, casks, taps, and other dependencies listed in `homebrew/.config/homebrew/Brewfile`.
 
 ## Platform-Specific Setup
 
@@ -96,6 +100,11 @@ sudo apt-get install stow zsh
 - Platform-specific overrides can be added via shell sourcing (see `.zshrc`)
 - Secrets (SSH keys, API tokens) are managed separately—not included in this repo
 - Large runtime databases (e.g., `~/.config/zotero-mcp`) are excluded
+- `~/.config/homebrew/Brewfile` tracks installed formulae, casks, taps, and other
+  Homebrew-managed dependencies. A `brew` shell function (in `.zshrc`) automatically
+  re-runs `brew bundle dump` after `install`/`uninstall`/`tap`/`untap` so the
+  Brewfile stays in sync. Restore on a new machine with `brew bundle install --global`
+  (done automatically by `install.sh` on macOS).
 
 ## Adding New Dotfiles
 

@@ -3,6 +3,7 @@ export PATH=$HOME/.bin:$HOME/bin:/usr/local/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_BUNDLE_FILE_GLOBAL="$HOME/.config/homebrew/Brewfile"
 
 # Prefer gsed over sed
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
@@ -31,6 +32,20 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
+
+# Keep Brewfile in sync after install/uninstall/tap changes
+brew() {
+  command brew "$@"
+  local ret=$?
+  if [[ $ret -eq 0 ]]; then
+    case "$1" in
+      install|uninstall|rm|remove|reinstall|tap|untap)
+        command brew bundle dump --global --force --quiet
+        ;;
+    esac
+  fi
+  return $ret
+}
 
 # Aliases
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "WIP"'

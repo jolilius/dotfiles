@@ -12,6 +12,7 @@ stow -d "$DOTFILES_DIR" -t ~ git
 stow -d "$DOTFILES_DIR" -t ~ tools
 stow -d "$DOTFILES_DIR" -t ~ terminal
 stow -d "$DOTFILES_DIR" -t ~ bin
+stow -d "$DOTFILES_DIR" -t ~ homebrew
 
 # Platform-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -20,6 +21,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "  Loading QMD LaunchAgents..."
     launchctl load -w ~/Library/LaunchAgents/com.qmd.update.plist
     launchctl load -w ~/Library/LaunchAgents/com.qmd.refresh.plist
+    echo "  Installing Homebrew packages from Brewfile..."
+    HOMEBREW_BUNDLE_FILE_GLOBAL="$HOME/.config/homebrew/Brewfile" brew bundle install --global
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "🐧 Linux detected"
     # Add Linux-specific packages here if needed
