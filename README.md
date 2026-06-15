@@ -100,11 +100,14 @@ sudo apt-get install stow zsh
 - Platform-specific overrides can be added via shell sourcing (see `.zshrc`)
 - Secrets (SSH keys, API tokens) are managed separately—not included in this repo
 - Large runtime databases (e.g., `~/.config/zotero-mcp`) are excluded
-- `~/.config/homebrew/Brewfile` tracks installed formulae, casks, taps, and other
-  Homebrew-managed dependencies. A `brew` shell function (in `.zshrc`) automatically
+- `homebrew/.config/homebrew/Brewfile` is the single source of truth for Homebrew
+  formulae, casks, taps, and other dependencies — the same file is installed on
+  every machine via `install.sh`. A `brew` shell function (in `.zshrc`) automatically
   re-runs `brew bundle dump` after `install`/`uninstall`/`tap`/`untap` so the
-  Brewfile stays in sync. Restore on a new machine with `brew bundle install --global`
-  (done automatically by `install.sh` on macOS).
+  Brewfile stays in sync with what's actually installed.
+- ekctl's formula builds from source and requires the full Xcode app (not just the
+  Command Line Tools). `install.sh` skips it via `HOMEBREW_BUNDLE_BREW_SKIP` on
+  machines without Xcode installed.
 
 ## Adding New Dotfiles
 

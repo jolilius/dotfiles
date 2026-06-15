@@ -2,28 +2,23 @@
 set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BREWFILE="$DOTFILES_DIR/homebrew/.config/homebrew/Brewfile"
 
 if command -v brew >/dev/null 2>&1; then
     echo "🍺 Installing Homebrew dependencies..."
-    brew bundle --file="$DOTFILES_DIR/Brewfile"
+    # ekctl's formula builds from source and depends_on the full Xcode app
+    # (not just the Command Line Tools), so skip it unless Xcode is installed.
+    if [[ ! -d "/Applications/Xcode.app" ]]; then
+        export HOMEBREW_BUNDLE_BREW_SKIP="schappim/ekctl/ekctl"
+        echo "  ⚠️  Skipping ekctl: requires the full Xcode app (not just Command Line Tools)."
+        echo "     Install Xcode from the App Store, then run: brew bundle install --file=\"$BREWFILE\""
+    fi
+    brew bundle install --file="$BREWFILE"
 fi
 
 if ! command -v qmd >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
     echo "📦 Installing qmd (https://github.com/tobi/qmd)..."
     npm install -g @tobilu/qmd
-fi
-
-# ekctl (Calendar/Reminders CLI) - its Homebrew formula builds from source and
-# requires the full Xcode app (not just the Command Line Tools), so it can't be
-# installed unattended via the Brewfile.
-if command -v brew >/dev/null 2>&1 && ! command -v ekctl >/dev/null 2>&1; then
-    if [[ -d "/Applications/Xcode.app" ]]; then
-        echo "📅 Installing ekctl..."
-        brew install schappim/ekctl/ekctl
-    else
-        echo "⚠️  Skipping ekctl: requires the full Xcode app (not just Command Line Tools)."
-        echo "   Install Xcode from the App Store, then run: brew install schappim/ekctl/ekctl"
-    fi
 fi
 
 echo "🤖 Installing Claude skills..."
@@ -59,8 +54,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
         launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/$label.plist"
     done
-    echo "  Installing Homebrew packages from Brewfile..."
-    HOMEBREW_BUNDLE_FILE_GLOBAL="$HOME/.config/homebrew/Brewfile" brew bundle install --global
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "🐧 Linux detected"
     # Add Linux-specific packages here if needed
