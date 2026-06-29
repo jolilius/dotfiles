@@ -1,79 +1,147 @@
-tap "felixkratz/formulae"
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "schappim/ekctl"
 tap "thdxg/tap"
 tap "ttscoff/thelab"
+# Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
+# Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
+# Library for command-line editing
 brew "readline"
+# General-purpose data compression with high compression ratio
 brew "xz"
+# Zstandard is a real-time compression algorithm
 brew "zstd"
+# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Get/set bluetooth power and discoverable state
 brew "blueutil"
+# Cross-platform make
 brew "cmake"
+# Console Matrix
 brew "cmatrix"
+# Plays typewriter sounds every time you press a key
 brew "daktilo"
+# Diff that understands syntax
 brew "difftastic"
+# Load/unload environment variables based on $PWD
 brew "direnv"
+# Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
+# More intuitive version of du in rust
 brew "dust"
+# Git for data science projects
 brew "dvc"
+# Modern, maintained replacement for ls
 brew "eza"
+# ASCII Matrix-like steak demo
 brew "fakesteak"
+# Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
 brew "gh"
+# Secure hashing function
 brew "libb2"
+# Remote repository management made easy
 brew "ghq"
+# Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Render markdown on the CLI
+brew "glow"
+# GNU implementation of the famous stream editor
 brew "gnu-sed"
+# Get events and tasks from the macOS calendar database
 brew "ical-buddy"
+# Interactive jq
 brew "ijq"
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Tools and libraries to manipulate images in many formats
 brew "imagemagick-full"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Provides a formatted and highlighted view of Markdown files in Terminal
 brew "mdless"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# CLI for Mermaid library
 brew "mermaid-cli"
+# Remote terminal application
 brew "mosh"
+# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Recreates the SETEC ASTRONOMY effect from 'Sneakers'
 brew "no-more-secrets"
+# Swiss-army knife of markup format conversion
 brew "pandoc"
+# PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Modern replacement for ps written in Rust
 brew "procs"
+# Python version management
 brew "pyenv"
+# Generic syntax highlighter
 brew "pygments"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
-brew "sdl2"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
+# Cross-shell prompt for astronauts
 brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Tool Command Language
 brew "tcl-tk@8"
+# User interface to the TELNET protocol
 brew "telnet"
+# Terminal multiplexer
 brew "tmux"
+# Markup-based typesetting system
 brew "typst"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# General-purpose lossless data-compression library
 brew "zlib"
+# Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+# Zsh port of Fish shell's history search
 brew "zsh-history-substring-search"
+# Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-brew "felixkratz/formulae/borders"
-brew "schappim/ekctl/ekctl"
-brew "ttscoff/thelab/apex"
+# Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 cask "font-fira-mono"
 cask "font-fira-sans"
 cask "font-tex-gyre-pagella"
+# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Vector graphics editor
 cask "inkscape"
+# Native terminal built with SwiftUI and libghostty
 cask "thdxg/tap/macterm"
+# Scientific and technical publishing system built on Pandoc
+cask "quarto"
+# Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
+# Configurable document editor that supports Markdown
 cask "typora"
+# Open-source code editor
 cask "visual-studio-code"
+# Manage Homebrew packages with a UI
 cask "wailbrew"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
 vscode "github.copilot-chat"
 vscode "ms-toolsai.jupyter-keymap"
