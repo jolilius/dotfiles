@@ -1,0 +1,14 @@
+#!/bin/sh
+# Auto-push every commit in this repo. Warn-only: a failed push (e.g. remote
+# has diverged) never undoes or blocks the commit, which already succeeded.
+
+branch=$(git symbolic-ref --short HEAD 2>/dev/null) || exit 0
+remote=$(git config --get "branch.$branch.remote" 2>/dev/null)
+remote=${remote:-origin}
+
+if ! git push -u "$remote" "$branch" 2>&1; then
+    echo "" >&2
+    echo "⚠️  auto-push failed ('$branch' -> '$remote'). Commit is saved locally — push manually when ready." >&2
+fi
+
+exit 0

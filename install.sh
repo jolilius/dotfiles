@@ -34,6 +34,9 @@ if command -v claude >/dev/null 2>&1; then
     claude plugin install ekctl-skill@ekctl-skill
 fi
 
+echo "🪝 Enabling auto-push git hook for this repo..."
+git -C "$DOTFILES_DIR" config core.hooksPath .githooks
+
 echo "🔗 Installing dotfiles with stow..."
 
 # Core packages (cross-platform)
