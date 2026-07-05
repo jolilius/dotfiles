@@ -1,0 +1,8 @@
+{
+  "trustedtaps": [
+    "felixkratz/formulae",
+    "schappim/ekctl",
+    "thdxg/tap",
+    "ttscoff/thelab"
+  ]
+}
