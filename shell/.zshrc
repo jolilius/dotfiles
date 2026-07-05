@@ -44,6 +44,12 @@ alias la='eza -la --git --icons=auto'
 alias lt='eza --tree --icons=auto'
 alias llt='eza -la --tree --git --icons=auto'
 
+# ripgrep (modern grep)
+alias grep='rg'
+
+# fd (modern find)
+alias find='fd'
+
 # zoxide (z command for directory jumping)
 eval "$(zoxide init zsh)"
 
