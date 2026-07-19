@@ -94,6 +94,30 @@ sudo apt-get install stow zsh
 # Install antigen manually or via package manager
 ```
 
+## Node.js policy
+
+**Homebrew's `node` (declared in the Brewfile) is the only Node.js on the system.**
+No nodejs.org pkg installer, no version managers (nvm, asdf, volta, fnm, bun).
+
+Why: global npm packages with native modules (better-sqlite3, sharp, canvas, …)
+are compiled against the ABI of whichever `node` ran `npm install -g`. If a
+*different* Node resolves first on PATH in another context (background job,
+editor subprocess, launchd), the module fails to load. This broke `qmd` in
+July 2026: an orphaned nodejs.org install at `/usr/local/bin/node` (v20) shadowed
+Homebrew's node (v26) in some shell contexts.
+
+How the shell config enforces it:
+
+- `shell/.zshenv` runs `brew shellenv` for **every** zsh — including
+  non-interactive subprocesses — so all contexts resolve the same `node`.
+- `shell/.zprofile` re-sources `~/.profile` after macOS's `path_helper` so
+  login shells keep the same ordering.
+- `install.sh` warns if a non-Homebrew Node exists at `/usr/local/bin/node`
+  and prints the removal commands (they need sudo, so it won't run them).
+
+Verify on any machine: `which -a node` and `zsh -c 'which -a node'` must both
+show exactly one entry, `$(brew --prefix)/bin/node`.
+
 ## Notes
 
 - The `.zshrc` sources configuration from `~/.config/shell/` for shared settings
@@ -137,6 +161,9 @@ To add a new tool's config:
 ## Troubleshooting
 
 ### Symlinks not created
+- `install.sh` automatically moves plain-file shell dotfiles (`.profile`,
+  `.zprofile`, `.zshenv`, `.zshrc`, …) to `*.pre-stow.bak` before stowing;
+  review and delete the backups after confirming nothing in them is needed
 - Check if files already exist in `~`: `ls -la ~/<filename>`
 - Remove conflicting files: `rm ~/<filename>`
 - Run `stow` again with verbose output: `stow -vv <package>`

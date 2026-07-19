@@ -37,6 +37,27 @@ fi
 echo "🪝 Enabling auto-push git hook for this repo..."
 git -C "$DOTFILES_DIR" config core.hooksPath .githooks
 
+echo "🧹 Preflight: backing up plain-file dotfiles that would block stow..."
+# A pre-existing regular file (not a symlink) at a target path makes stow skip
+# it silently — the repo config then never takes effect for that file.
+for f in .profile .zprofile .zshenv .zshrc .bashrc .bash_profile; do
+    if [[ -e "$HOME/$f" && ! -L "$HOME/$f" ]]; then
+        mv "$HOME/$f" "$HOME/$f.pre-stow.bak"
+        echo "  ⚠️  ~/$f was a plain file — moved to ~/$f.pre-stow.bak (review, then delete)"
+    fi
+done
+
+# A Node from the nodejs.org pkg installer shadows Homebrew's node in some
+# shell contexts and causes native-module ABI mismatches (see README,
+# "Node.js policy"). On Intel Macs /usr/local/bin/node IS Homebrew's (a
+# symlink), so only a real file counts.
+if [[ -x /usr/local/bin/node && ! -L /usr/local/bin/node ]]; then
+    echo "⚠️  Non-Homebrew Node.js found at /usr/local/bin/node — remove it with:"
+    echo "      sudo rm -f /usr/local/bin/node /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack"
+    echo "      sudo rm -rf /usr/local/lib/node_modules /usr/local/include/node"
+    echo "      sudo pkgutil --forget org.nodejs.node.pkg 2>/dev/null || true"
+fi
+
 echo "🔗 Installing dotfiles with stow..."
 
 # Core packages (cross-platform)
