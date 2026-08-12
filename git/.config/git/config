@@ -66,7 +66,8 @@
 	gr      = grep -Ii
 
 [user]
-	name = Johan Lilius
+	name = jolilius
+	email = johan.lilius@gmail.com
 
 [init]
 	defaultBranch = main
@@ -77,3 +78,9 @@
 	insteadOf = https://github.com/
 [ghq]
 	root = /Users/jolilius/home/src
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

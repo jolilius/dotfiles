@@ -5,33 +5,33 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BREWFILE="$DOTFILES_DIR/homebrew/.config/homebrew/Brewfile"
 
 if command -v brew >/dev/null 2>&1; then
-    echo "🍺 Installing Homebrew dependencies..."
-    # ekctl's formula builds from source and depends_on the full Xcode app
-    # (not just the Command Line Tools), so skip it unless Xcode is installed.
-    if [[ ! -d "/Applications/Xcode.app" ]]; then
-        export HOMEBREW_BUNDLE_BREW_SKIP="schappim/ekctl/ekctl"
-        echo "  ⚠️  Skipping ekctl: requires the full Xcode app (not just Command Line Tools)."
-        echo "     Install Xcode from the App Store, then run: brew bundle install --file=\"$BREWFILE\""
-    fi
-    brew bundle install --file="$BREWFILE"
+  echo "🍺 Installing Homebrew dependencies..."
+  # ekctl's formula builds from source and depends_on the full Xcode app
+  # (not just the Command Line Tools), so skip it unless Xcode is installed.
+  if [[ ! -d "/Applications/Xcode.app" ]]; then
+    export HOMEBREW_BUNDLE_BREW_SKIP="schappim/ekctl/ekctl"
+    echo "  ⚠️  Skipping ekctl: requires the full Xcode app (not just Command Line Tools)."
+    echo "     Install Xcode from the App Store, then run: brew bundle install --file=\"$BREWFILE\""
+  fi
+  brew bundle install --file="$BREWFILE"
 fi
 
 if ! command -v qmd >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
-    echo "📦 Installing qmd (https://github.com/tobi/qmd)..."
-    npm install -g @tobilu/qmd
+  echo "📦 Installing qmd (https://github.com/tobi/qmd)..."
+  npm install -g @tobilu/qmd
 fi
 
 echo "🤖 Installing Claude skills..."
 
 # QMD skill (bundled with the qmd CLI)
 if command -v qmd >/dev/null 2>&1 && [[ ! -e "$HOME/.agents/skills/qmd" ]]; then
-    qmd skill install --global --yes
+  qmd skill install --global --yes
 fi
 
 # ekctl skill (Calendar/Reminders), distributed as a Claude plugin marketplace
 if command -v claude >/dev/null 2>&1; then
-    claude plugin marketplace add schappim/ekctl-skill
-    claude plugin install ekctl-skill@ekctl-skill
+  claude plugin marketplace add schappim/ekctl-skill
+  claude plugin install ekctl-skill@ekctl-skill
 fi
 
 echo "🪝 Enabling auto-push git hook for this repo..."
@@ -71,16 +71,16 @@ stow -d "$DOTFILES_DIR" -t ~ homebrew
 
 # Platform-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "🍎 macOS detected"
-    stow -d "$DOTFILES_DIR" -t ~ launchd
-    echo "  Loading QMD LaunchAgents..."
-    for label in com.qmd.update com.qmd.refresh; do
-        launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
-        launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/$label.plist"
-    done
+  echo "🍎 macOS detected"
+  stow -d "$DOTFILES_DIR" -t ~ launchd
+  echo "  Loading QMD LaunchAgents..."
+  for label in com.qmd.update com.qmd.refresh; do
+    launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
+    launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/$label.plist"
+  done
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "🐧 Linux detected"
-    # Add Linux-specific packages here if needed
+  echo "🐧 Linux detected"
+  # Add Linux-specific packages here if needed
 fi
 
 echo "✅ Dotfiles installed!"

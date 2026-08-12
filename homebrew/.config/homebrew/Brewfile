@@ -1,7 +1,7 @@
-tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
-tap "schappim/ekctl"
-tap "thdxg/tap"
-tap "ttscoff/thelab"
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae", trusted: true
+tap "schappim/ekctl", trusted: true
+tap "thdxg/tap", trusted: true
+tap "ttscoff/thelab", trusted: true
 # Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
 # Cryptography and SSL/TLS Toolkit
@@ -24,6 +24,8 @@ brew "cmake"
 brew "cmatrix"
 # Plays typewriter sounds every time you press a key
 brew "daktilo"
+# TIFF library and utilities
+brew "libtiff"
 # Diff that understands syntax
 brew "difftastic"
 # Load/unload environment variables based on $PWD
@@ -110,6 +112,8 @@ brew "tmux"
 brew "typst"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# JavaScript package manager
+brew "yarn"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # General-purpose lossless data-compression library
@@ -122,10 +126,20 @@ brew "zsh-autosuggestions"
 brew "zsh-history-substring-search"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
+# macOS CLI tool for managing Calendar events and Reminders via EventKit
+brew "schappim/ekctl/ekctl"
+# Unified Markdown processor supporting CommonMark, GFM, MultiMarkdown, and Kramdown
+brew "ttscoff/thelab/apex"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 cask "font-fira-mono"
 cask "font-fira-sans"
+cask "font-noto-emoji"
+cask "font-noto-sans"
+cask "font-noto-sans-math"
+cask "font-noto-sans-mono"
 cask "font-tex-gyre-pagella"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
@@ -133,6 +147,8 @@ cask "ghostty"
 cask "inkscape"
 # Native terminal built with SwiftUI and libghostty
 cask "thdxg/tap/macterm"
+# AI usage tracker for Cursor, Claude Code, Codex, Copilot and more
+cask "openusage"
 # Scientific and technical publishing system built on Pandoc
 cask "quarto"
 # Graphical user interface for TeX Live Manager
@@ -145,7 +161,6 @@ cask "visual-studio-code"
 cask "wailbrew"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
-vscode "github.copilot-chat"
 vscode "ms-toolsai.jupyter-keymap"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
@@ -158,6 +173,7 @@ vscode "ms-vscode.remote-explorer"
 uv "arxiv-mcp-server"
 uv "llm"
 uv "marker-pdf"
+uv "printmd", source: "file:///Users/jolilius/home/src/printtool"
 uv "zotero-mcp", with: ["chromadb"]
 uv "zotero-mcp-server", with: ["chromadb"]
 npm "@modelcontextprotocol/server-brave-search"
