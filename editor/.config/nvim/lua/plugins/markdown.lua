@@ -43,7 +43,9 @@ return {
 					marker = marker:gsub("^(%d+)", function(number)
 						return tostring(tonumber(number) + 1)
 					end)
-					return "<cr><c-u>" .. indent .. marker .. (checkbox and "[ ] " or "")
+					-- <CR> preserves the existing indentation. Do not use <C-u> after
+					-- it: that can delete the line break when splitting an item.
+					return "<cr>" .. marker .. (checkbox and "[ ] " or "")
 				end
 
 				vim.keymap.set("i", "<cr>", continue_list, {

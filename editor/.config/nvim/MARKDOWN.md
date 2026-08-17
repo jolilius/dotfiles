@@ -31,9 +31,6 @@ language files.
 | `<leader>ms` | Toggle spell checking |
 | `<leader>mw` | Toggle visual line wrapping |
 | `<leader>mq` | Hard-wrap the current paragraph at 80 columns |
-| `<leader>mf` | Toggle the fold under the cursor |
-| `<leader>mc` | Close all folds |
-| `<leader>mo` | Open all folds |
 
 LazyVim's original Markdown keys remain available:
 

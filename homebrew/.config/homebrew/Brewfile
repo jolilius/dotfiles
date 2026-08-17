@@ -60,8 +60,6 @@ brew "git-delta"
 brew "glow"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
-# Generate regular expressions from user-provided test cases
-brew "grex"
 # Get events and tasks from the macOS calendar database
 brew "ical-buddy"
 # Interactive jq
@@ -151,6 +149,8 @@ cask "thdxg/tap/macterm"
 cask "openusage"
 # Scientific and technical publishing system built on Pandoc
 cask "quarto"
+# Quicklook extension for source files
+cask "syntax-highlight"
 # Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
 # Configurable document editor that supports Markdown
@@ -173,6 +173,7 @@ vscode "ms-vscode.remote-explorer"
 uv "arxiv-mcp-server"
 uv "llm"
 uv "marker-pdf"
+uv "oikotie-scraper", source: "file:///Users/jolilius/home/src/oikotie_scaper"
 uv "printmd", source: "file:///Users/jolilius/home/src/printtool"
 uv "zotero-mcp", with: ["chromadb"]
 uv "zotero-mcp-server", with: ["chromadb"]
