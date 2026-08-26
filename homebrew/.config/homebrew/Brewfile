@@ -2,6 +2,7 @@ tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae", tr
 tap "schappim/ekctl", trusted: true
 tap "thdxg/tap", trusted: true
 tap "ttscoff/thelab", trusted: true
+tap "unsecretised/tap"
 # Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
 # Cryptography and SSL/TLS Toolkit
@@ -44,6 +45,10 @@ brew "fakesteak"
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
@@ -76,12 +81,16 @@ brew "mdless"
 brew "node"
 # CLI for Mermaid library
 brew "mermaid-cli"
+# Deep clean and optimize your Mac
+brew "mole"
 # Remote terminal application
 brew "mosh"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Recreates the SETEC ASTRONOMY effect from 'Sneakers'
 brew "no-more-secrets"
+# Interactive GPU process monitor
+brew "nvtop"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -92,10 +101,10 @@ brew "procs"
 brew "pyenv"
 # Generic syntax highlighter
 brew "pygments"
+# Ruby version manager
+brew "rbenv"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# SDL2 compatibility layer that uses SDL3 behind the scenes
-brew "sdl2-compat"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -141,6 +150,8 @@ cask "font-noto-sans-mono"
 cask "font-tex-gyre-pagella"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Tiling window manager with tree layouts
+cask "glide"
 # Vector graphics editor
 cask "inkscape"
 # Native terminal built with SwiftUI and libghostty
@@ -149,6 +160,8 @@ cask "thdxg/tap/macterm"
 cask "openusage"
 # Scientific and technical publishing system built on Pandoc
 cask "quarto"
+# Tree-based macOS app switcher
+cask "unsecretised/tap/sxitch", trusted: true
 # Quicklook extension for source files
 cask "syntax-highlight"
 # Graphical user interface for TeX Live Manager
@@ -175,6 +188,7 @@ uv "llm"
 uv "marker-pdf"
 uv "oikotie-scraper", source: "file:///Users/jolilius/home/src/oikotie_scaper"
 uv "printmd", source: "file:///Users/jolilius/home/src/printtool"
+uv "soundtool", source: "file:///Users/jolilius/home/src/sound-archive-tool"
 uv "zotero-mcp", with: ["chromadb"]
 uv "zotero-mcp-server", with: ["chromadb"]
 npm "@modelcontextprotocol/server-brave-search"

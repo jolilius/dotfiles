@@ -4,5 +4,8 @@
     "schappim/ekctl",
     "thdxg/tap",
     "ttscoff/thelab"
+  ],
+  "trustedcasks": [
+    "unsecretised/tap/sxitch"
   ]
 }
