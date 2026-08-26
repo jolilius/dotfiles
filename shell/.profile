@@ -41,3 +41,6 @@ export EDITOR='nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
 export LC_CTYPE="fi_FI.UTF-8"
 export MERMAID_BIN="$HOMEBREW_PREFIX/bin/mmdc"
+
+# Machine-local secrets (gitignored) — see .config/local.env.example
+[ -f "$HOME/.config/local.env" ] && source "$HOME/.config/local.env"
