@@ -1,0 +1,26 @@
+{
+  "ui": {
+    "autoModeAcknowledged": true
+  },
+  "modelProviders": {
+    "openai": [
+      {
+        "id": "qwen-coder-32b",
+        "name": "qwen-coder-32b",
+        "baseUrl": "http://100.89.90.6:8000/v1",
+        "envKey": "VLLM_API_KEY",
+        "contextWindowSize": 32000
+      }
+    ]
+  },
+  "security": {
+    "auth": {
+      "selectedType": "openai"
+    }
+  },
+  "model": {
+    "name": "qwen-coder-32b",
+    "baseUrl": "http://100.89.90.6:8000/v1"
+  },
+  "$version": 4
+}
