@@ -47,6 +47,15 @@ for f in .profile .zprofile .zshenv .zshrc .bashrc .bash_profile; do
     fi
 done
 
+# BasicTeX/MacTeX's installer .pkg leaves the TeX Live tree root-owned, so
+# every `tlmgr install <pkg>` needs sudo until this is fixed once per machine.
+for texlive_dir in /usr/local/texlive/*basic; do
+    if [[ -d "$texlive_dir" ]] && [[ "$(stat -f%Su "$texlive_dir" 2>/dev/null)" != "$(whoami)" ]]; then
+        echo "🔧 Fixing TeX Live ownership so tlmgr doesn't need sudo: $texlive_dir"
+        sudo chown -R "$(whoami)" "$texlive_dir"
+    fi
+done
+
 # A Node from the nodejs.org pkg installer shadows Homebrew's node in some
 # shell contexts and causes native-module ABI mismatches (see README,
 # "Node.js policy"). On Intel Macs /usr/local/bin/node IS Homebrew's (a

@@ -1,5 +1,9 @@
 source ~/.profile
 
+# System info banner on the outer shell only — skip inside tmux panes/windows
+# so it doesn't reprint on every split.
+[ -z "$TMUX" ] && command -v fastfetch >/dev/null && fastfetch
+
 # Plugins (via Homebrew)
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -64,8 +68,14 @@ alias grep='rg'
 # fd (modern find)
 alias find='fd'
 
+# fzf (fuzzy finder — also backs zoxide's `zi` interactive picker)
+source <(fzf --zsh)
+
 # zoxide (z command for directory jumping)
 eval "$(zoxide init zsh)"
+
+# direnv (auto-load .envrc per directory)
+eval "$(direnv hook zsh)"
 
 # Prompt
 eval "$(starship init zsh)"

@@ -14,6 +14,13 @@
 
 [diff]
 	colorMoved = default
+	tool = difftastic
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
 
 [alias]
 	# Status & navigation

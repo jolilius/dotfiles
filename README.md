@@ -118,6 +118,20 @@ How the shell config enforces it:
 Verify on any machine: `which -a node` and `zsh -c 'which -a node'` must both
 show exactly one entry, `$(brew --prefix)/bin/node`.
 
+## TeX Live policy
+
+**One TeX distribution: BasicTeX (`brew install --cask basictex`), everywhere.**
+No full MacTeX — install missing packages with `tlmgr` instead of hunting for
+a Homebrew formula (LaTeX packages generally aren't packaged as brew formulae).
+
+Why: the BasicTeX/MacTeX `.pkg` installer leaves the TeX Live tree
+(`/usr/local/texlive/<year>basic`) **root-owned**, so every `tlmgr install`
+needs `sudo` until that's fixed once per machine. `install.sh` does this
+automatically (chowns the tree to the current user if it isn't already).
+
+If `tlmgr install <pkg>` still asks for a password after running `install.sh`,
+chown it manually: `sudo chown -R $(whoami) /usr/local/texlive/*basic`.
+
 ## Notes
 
 - The `.zshrc` sources configuration from `~/.config/shell/` for shared settings
