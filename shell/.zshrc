@@ -45,12 +45,6 @@ interpreter-vllm() {
     "$@"
 }
 
-# Qwen Code against the same self-hosted vLLM (Qwen2.5-Coder-32B on mandelbrot.abo.fi).
-# Provider is wired via ~/.qwen/settings.json (modelProviders.openai + security.auth.selectedType=openai)
-# and ~/.qwen/.env (QWEN_CODE_MAX_OUTPUT_TOKENS). --safe-mode is required: qwen-code's full
-# tool/system-prompt overhead alone eats ~24k of this model's 32k context window.
-alias qwen-vllm='qwen --safe-mode'
-
 # less / bat
 alias m='less'
 alias cat='bat --paging=never'
