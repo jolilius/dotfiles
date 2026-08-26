@@ -31,6 +31,20 @@ brew() {
 # Aliases
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "WIP"'
 
+# Open Interpreter against self-hosted vLLM (Qwen2.5-Coder-32B on mandelbrot.abo.fi).
+# `interpreter -p vllm` doesn't work — this build ignores model_providers/profiles
+# defined in config.toml, so the provider has to be passed via -c flags each run.
+interpreter-vllm() {
+  interpreter \
+    -c 'model_providers.vllm.name="vLLM (mandelbrot)"' \
+    -c 'model_providers.vllm.base_url="http://100.89.90.6:8000/v1"' \
+    -c 'model_providers.vllm.env_key="VLLM_API_KEY"' \
+    -c 'model_providers.vllm.wire_api="responses"' \
+    -c model_provider="vllm" -c model="qwen-coder-32b" \
+    -c model_context_window=32000 \
+    "$@"
+}
+
 # less / bat
 alias m='less'
 alias cat='bat --paging=never'
