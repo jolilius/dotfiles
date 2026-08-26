@@ -1,10 +1,14 @@
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae", trusted: true
+tap "nikitabobko/tap", trusted: { casks: ["aerospace"] }
+tap "sanyam-g/switch", "https://github.com/Sanyam-G/homebrew-switch"
 tap "schappim/ekctl", trusted: true
 tap "thdxg/tap", trusted: true
 tap "ttscoff/thelab", trusted: true
 tap "unsecretised/tap"
 # Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
+# Plugin manager for zsh, inspired by oh-my-zsh and vundle
+brew "antigen"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # Library for command-line editing
@@ -19,6 +23,12 @@ brew "bash"
 brew "bat"
 # Get/set bluetooth power and discoverable state
 brew "blueutil"
+# Install RubyGems as Homebrew formulae
+brew "brew-gem"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Ruby environment tool
+brew "chruby"
 # Cross-platform make
 brew "cmake"
 # Console Matrix
@@ -31,6 +41,10 @@ brew "libtiff"
 brew "difftastic"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Minimal, fast alternative to 'du -sh'
+brew "diskus"
+# Suite of tools for inspecting disk usage
+brew "duc"
 # Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
 # More intuitive version of du in rust
@@ -51,6 +65,7 @@ brew "sdl2-compat"
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+brew "gem-howzit"
 # GitHub command-line tool
 brew "gh"
 # Secure hashing function
@@ -65,10 +80,16 @@ brew "git-delta"
 brew "glow"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
+# Command-line tool for generating regular expressions
+brew "grex"
+# Easy plain text accounting with command-line, terminal and web UIs
+brew "hledger"
 # Get events and tasks from the macOS calendar database
 brew "ical-buddy"
 # Interactive jq
 brew "ijq"
+# Generic library support script
+brew "libtool"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Tools and libraries to manipulate images in many formats
@@ -93,6 +114,8 @@ brew "no-more-secrets"
 brew "nvtop"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
+# Fast, disk space efficient package manager
+brew "pnpm"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Modern replacement for ps written in Rust
@@ -101,22 +124,32 @@ brew "procs"
 brew "pyenv"
 # Generic syntax highlighter
 brew "pygments"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
 # Ruby version manager
 brew "rbenv"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# SOund eXchange: universal sound sample translator
+brew "sox"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Open source continuous file synchronization application
+brew "syncthing"
 # Tool Command Language
 brew "tcl-tk@8"
 # User interface to the TELNET protocol
 brew "telnet"
+# Programmatically correct mistyped console commands
+brew "thefuck"
 # Terminal multiplexer
 brew "tmux"
 # Markup-based typesetting system
 brew "typst"
+# File synchronization tool
+brew "unison"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # JavaScript package manager
@@ -141,6 +174,12 @@ brew "schappim/ekctl/ekctl"
 brew "ttscoff/thelab/apex"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# Command-line agent for Cursor
+cask "cursor-cli"
 cask "font-fira-mono"
 cask "font-fira-sans"
 cask "font-noto-emoji"
@@ -154,16 +193,30 @@ cask "ghostty"
 cask "glide"
 # Vector graphics editor
 cask "inkscape"
+# GPU-based terminal emulator
+cask "kitty"
 # Native terminal built with SwiftUI and libghostty
 cask "thdxg/tap/macterm"
+# Full TeX Live distribution without GUI applications
+cask "mactex-no-gui"
+# CSV editor
+cask "modern-csv"
+# AI coding agent desktop client
+cask "opencode-desktop"
 # AI usage tracker for Cursor, Claude Code, Codex, Copilot and more
 cask "openusage"
 # Scientific and technical publishing system built on Pandoc
 cask "quarto"
+# Keyboard-driven window switcher that cycles windows, not apps
+cask "sanyam-g/switch/switch", trusted: true
+# Controls screen display settings
+cask "switchresx"
 # Tree-based macOS app switcher
 cask "unsecretised/tap/sxitch", trusted: true
 # Quicklook extension for source files
 cask "syntax-highlight"
+# Real time file synchronisation software
+cask "syncthing-app"
 # Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
 # Configurable document editor that supports Markdown
@@ -174,7 +227,40 @@ cask "visual-studio-code"
 cask "wailbrew"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
+vscode "alexcvzz.vscode-sqlite"
+vscode "anthropic.claude-code"
+vscode "batisteo.vscode-django"
+vscode "bradlc.vscode-tailwindcss"
+vscode "davidanson.vscode-markdownlint"
+vscode "dbaeumer.vscode-eslint"
+vscode "donjayamanne.githistory"
+vscode "donjayamanne.python-environment-manager"
+vscode "donjayamanne.python-extension-pack"
+vscode "eamodio.gitlens"
+vscode "ecmel.vscode-html-css"
+vscode "esbenp.prettier-vscode"
+vscode "fabiospampinato.vscode-todo-plus"
+vscode "github.copilot-chat"
+vscode "kevinrose.vsc-python-indent"
+vscode "mechatroner.rainbow-csv"
+vscode "mgesbert.python-path"
+vscode "michelemelluso.code-beautifier"
+vscode "mohsen1.prettify-json"
+vscode "mrmlnc.vscode-scss"
+vscode "ms-azuretools.vscode-azureresourcegroups"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-python.autopep8"
+vscode "ms-python.debugpy"
+vscode "ms-python.mypy-type-checker"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-toolsai.jupyter"
 vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
 vscode "ms-vscode.cmake-tools"
@@ -182,16 +268,36 @@ vscode "ms-vscode.cpp-devtools"
 vscode "ms-vscode.cpptools"
 vscode "ms-vscode.cpptools-extension-pack"
 vscode "ms-vscode.cpptools-themes"
+vscode "ms-vscode.live-server"
+vscode "ms-vscode.makefile-tools"
 vscode "ms-vscode.remote-explorer"
+vscode "ms-windows-ai-studio.windows-ai-studio"
+vscode "mtxr.sqltools"
+vscode "mtxr.sqltools-driver-sqlite"
+vscode "njpwerner.autodocstring"
+vscode "prisma.prisma"
+vscode "qwtel.sqlite-viewer"
+vscode "ronnidc.nunjucks"
+vscode "stylelint.vscode-stylelint"
+vscode "teamsdevapp.vscode-ai-foundry"
+vscode "vscodevim.vim"
+vscode "wayou.vscode-todo-highlight"
+vscode "wholroyd.jinja"
+vscode "zainchen.json"
+vscode "zignd.html-css-class-completion"
 uv "arxiv-mcp-server"
+uv "bcdl"
+uv "drskill"
 uv "llm"
 uv "marker-pdf"
-uv "oikotie-scraper", source: "file:///Users/jolilius/home/src/oikotie_scaper"
-uv "printmd", source: "file:///Users/jolilius/home/src/printtool"
-uv "soundtool", source: "file:///Users/jolilius/home/src/sound-archive-tool"
+uv "mempalace"
 uv "zotero-mcp", with: ["chromadb"]
 uv "zotero-mcp-server", with: ["chromadb"]
 npm "@modelcontextprotocol/server-brave-search"
+npm "@opengsd/gsd-pi"
+npm "@termly-dev/cli"
 npm "@tobilu/qmd"
 npm "defuddle"
+npm "gatsby-cli"
 npm "llm-checker"
+npm "serve"
