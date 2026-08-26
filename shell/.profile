@@ -1,3 +1,8 @@
+# Idempotent: both .zprofile (login shells) and .zshrc (interactive shells)
+# source this file, so guard against running it twice in the same shell.
+[ -n "$_DOTFILES_PROFILE_LOADED" ] && return
+export _DOTFILES_PROFILE_LOADED=1
+
 # PATH
 export PATH="$HOME/.bin:$HOME/bin:$PATH"
 
@@ -17,8 +22,13 @@ export HOMEBREW_BUNDLE_FILE_GLOBAL="$HOME/.config/homebrew/Brewfile"
 # Prefer gsed over sed
 [ -d "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" ] && export PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
 
-# TeX Live — MacTeX's version-independent symlink, survives yearly upgrades
-[ -d /Library/TeX/texbin ] && export PATH="/Library/TeX/texbin:$PATH"
+# TeX Live — MacTeX's version-independent symlink, survives yearly upgrades.
+# macOS path_helper (via /etc/paths.d/TeX) also adds this; skip if present
+# so it isn't duplicated, otherwise prepend it for priority.
+case ":$PATH:" in
+  *:/Library/TeX/texbin:*) ;;
+  *) [ -d /Library/TeX/texbin ] && export PATH="/Library/TeX/texbin:$PATH" ;;
+esac
 
 # pipx and other user-installed tools (claude lives here)
 export PATH="$HOME/.local/bin:$PATH"
