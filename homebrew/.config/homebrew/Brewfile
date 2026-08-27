@@ -152,9 +152,6 @@ vscode "ms-vscode.remote-explorer"
 uv "arxiv-mcp-server"
 uv "llm"
 uv "marker-pdf"
-uv "oikotie-scraper", source: "file:///Users/jolilius/home/src/oikotie_scaper"
-uv "printmd", source: "file:///Users/jolilius/home/src/printtool"
-uv "soundtool", source: "file:///Users/jolilius/home/src/sound-archive-tool"
 uv "zotero-mcp", with: ["chromadb"]
 uv "zotero-mcp-server", with: ["chromadb"]
 npm "@modelcontextprotocol/server-brave-search"
