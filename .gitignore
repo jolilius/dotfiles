@@ -20,3 +20,5 @@ automatic_backups/
 .config/git/local
 .config/local.env
 Brewfile.lock.json
+.config/homebrew/Brewfile.local
+.config/homebrew/Brewfile.local.lock.json

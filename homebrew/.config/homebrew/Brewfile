@@ -3,12 +3,12 @@ tap "schappim/ekctl", trusted: true
 tap "thdxg/tap", trusted: true
 tap "ttscoff/thelab", trusted: true
 tap "unsecretised/tap"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Library for command-line editing
 brew "readline"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # General-purpose data compression with high compression ratio
@@ -53,6 +53,8 @@ brew "glow"
 brew "gnu-sed"
 # Get events and tasks from the macOS calendar database
 brew "ical-buddy"
+# Generic library support script
+brew "libtool"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick-full"
 # Lightweight and flexible command-line JSON processor
@@ -77,6 +79,8 @@ brew "procs"
 brew "pygments"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# AI-powered command-line workflow tool for developers
+brew "qwen-code"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -140,21 +144,3 @@ cask "typora"
 cask "visual-studio-code"
 # Manage Homebrew packages with a UI
 cask "wailbrew"
-vscode "ms-toolsai.jupyter-keymap"
-vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode.cmake-tools"
-vscode "ms-vscode.cpp-devtools"
-vscode "ms-vscode.cpptools"
-vscode "ms-vscode.cpptools-extension-pack"
-vscode "ms-vscode.cpptools-themes"
-vscode "ms-vscode.remote-explorer"
-uv "arxiv-mcp-server"
-uv "llm"
-uv "marker-pdf"
-uv "zotero-mcp", with: ["chromadb"]
-uv "zotero-mcp-server", with: ["chromadb"]
-npm "@modelcontextprotocol/server-brave-search"
-npm "@tobilu/qmd"
-npm "defuddle"
-npm "llm-checker"

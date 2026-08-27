@@ -6,8 +6,6 @@
     "ttscoff/thelab"
   ],
   "trustedcasks": [
-    "nikitabobko/tap/aerospace",
-    "sanyam-g/switch/switch",
     "unsecretised/tap/sxitch"
   ]
 }

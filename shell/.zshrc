@@ -25,7 +25,14 @@ brew() {
   if [[ $ret -eq 0 ]]; then
     case "$1" in
       install|uninstall|rm|remove|reinstall|tap|untap)
-        command brew bundle dump --global --force --quiet
+        # Shared Brewfile (tracked/stowed): taps/formulae/casks only. vscode/npm/uv
+        # extensions vary per machine and used to get dumped in here too, silently
+        # clobbering the other machine's set on every plain `brew install`.
+        command brew bundle dump --global --force --quiet \
+          --no-vscode --no-npm --no-uv --no-mas --no-go --no-cargo --no-flatpak --no-winget --no-krew
+        # Local Brewfile (gitignored, per-machine): vscode/npm/uv only.
+        command brew bundle dump --file="$HOME/.config/homebrew/Brewfile.local" --force --quiet \
+          --no-formula --no-cask --no-tap --vscode --npm --uv
         ;;
     esac
   fi
