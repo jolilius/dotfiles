@@ -111,6 +111,8 @@ brew "felixkratz/formulae/borders"
 brew "schappim/ekctl/ekctl"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
 # Command-line agent for Cursor
