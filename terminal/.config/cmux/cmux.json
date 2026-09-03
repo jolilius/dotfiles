@@ -1,0 +1,10 @@
+{
+  "shortcuts": {
+    "bindings": {
+      "focusPreviousPane": "ctrl+cmd+left",
+      "focusNextPane": "ctrl+cmd+right",
+      "prevSidebarTab": "ctrl+cmd+up",
+      "nextSidebarTab": "ctrl+cmd+down"
+    }
+  }
+}

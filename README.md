@@ -17,7 +17,7 @@ Or install individual packages:
 ```bash
 stow shell        # .zshrc, .bashrc, shell configuration
 stow editor       # nvim, vim configuration
-stow terminal     # kitty, ghostty, alacritty configuration
+stow terminal     # kitty, ghostty, alacritty, cmux configuration
 stow tools        # karabiner, aerospace, bat, starship, etc.
 stow git          # git configuration
 stow homebrew     # Brewfile (Homebrew packages, casks, taps)
@@ -29,7 +29,7 @@ stow homebrew     # Brewfile (Homebrew packages, casks, taps)
 .dotfiles/
 ├── shell/        # Shell configuration (.zshrc, .bashrc)
 ├── editor/       # Editor config (.config/nvim, .vimrc)
-├── terminal/     # Terminal emulators (.config/kitty, .config/ghostty, etc.)
+├── terminal/     # Terminal emulators (.config/kitty, .config/ghostty, .config/cmux, etc.)
 ├── tools/        # Tool configs (.config/karabiner, .config/aerospace, .config/starship.toml, etc.)
 ├── git/          # Git configuration (.config/git)
 ├── homebrew/     # Homebrew Brewfile (.config/homebrew/Brewfile)
