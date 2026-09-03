@@ -13,15 +13,23 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
-Or install individual packages:
+Or install individual packages (run from inside the repo):
 ```bash
-stow shell        # .zshrc, .bashrc, shell configuration
-stow editor       # nvim, vim configuration
-stow terminal     # kitty, ghostty, alacritty, cmux configuration
-stow tools        # karabiner, aerospace, bat, starship, etc.
-stow git          # git configuration
-stow homebrew     # Brewfile (Homebrew packages, casks, taps)
+stow -t ~ shell        # .zshrc, .bashrc, shell configuration
+stow -t ~ editor       # nvim, vim configuration
+stow -t ~ terminal     # kitty, ghostty, alacritty, cmux configuration
+stow -t ~ tools        # karabiner, aerospace, bat, starship, etc.
+stow -t ~ git          # git configuration
+stow -t ~ homebrew     # Brewfile (Homebrew packages, casks, taps)
 ```
+
+> **Always pass `-t ~` explicitly.** Without it, stow's target defaults to the
+> *parent directory of the repo*, not `$HOME`. If the repo isn't cloned
+> directly into `$HOME` (e.g. it lives at `~/src/dotfiles` instead of
+> `~/.dotfiles`), a bare `stow <package>` silently creates symlinks in the
+> wrong place (e.g. `~/src/.config` instead of `~/.config`) instead of erroring.
+> `install.sh` always passes both `-d "$DOTFILES_DIR" -t ~` for this reason —
+> match that pattern for any manual stow invocation too.
 
 ## Directory Structure
 
@@ -50,8 +58,8 @@ GNU Stow creates symlinks from this directory to your home directory. For exampl
 
 To remove symlinks for a package:
 ```bash
-stow -D shell     # Remove shell package
-stow -D editor    # Remove editor package
+stow -D -t ~ shell     # Remove shell package
+stow -D -t ~ editor    # Remove editor package
 ```
 
 ## Setup on New Machine
@@ -163,7 +171,7 @@ To add a new tool's config:
 
 3. Stow it:
    ```bash
-   stow tools
+   stow -t ~ tools
    ```
 
 4. Commit to git:
@@ -180,7 +188,7 @@ To add a new tool's config:
   review and delete the backups after confirming nothing in them is needed
 - Check if files already exist in `~`: `ls -la ~/<filename>`
 - Remove conflicting files: `rm ~/<filename>`
-- Run `stow` again with verbose output: `stow -vv <package>`
+- Run `stow` again with verbose output: `stow -vv -t ~ <package>`
 
 ### Wrong shell after install
 - Change default shell: `chsh -s $(which zsh)`

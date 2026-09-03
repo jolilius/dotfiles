@@ -69,6 +69,10 @@ fi
 
 echo "🔗 Installing dotfiles with stow..."
 
+# Always pass both -d and -t explicitly. Without -t, stow's target defaults
+# to the parent directory of the stow dir (-d), not $HOME — if this repo
+# isn't cloned directly into $HOME, that silently symlinks into the wrong
+# place (e.g. ~/src/.config instead of ~/.config) rather than erroring.
 # Core packages (cross-platform)
 stow -d "$DOTFILES_DIR" -t ~ shell
 stow -d "$DOTFILES_DIR" -t ~ editor
