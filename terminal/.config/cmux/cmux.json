@@ -1,8 +1,10 @@
 {
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
   "shortcuts": {
     "bindings": {
-      "focusPreviousPane": "ctrl+cmd+left",
-      "focusNextPane": "ctrl+cmd+right",
+      "focusLeft": "ctrl+cmd+left",
+      "focusRight": "ctrl+cmd+right",
       "prevSidebarTab": "ctrl+cmd+up",
       "nextSidebarTab": "ctrl+cmd+down"
     }
