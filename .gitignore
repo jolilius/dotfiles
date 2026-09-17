@@ -22,3 +22,9 @@ automatic_backups/
 Brewfile.lock.json
 .config/homebrew/Brewfile.local
 .config/homebrew/Brewfile.local.lock.json
+
+# LazyVim's own internal bookkeeping (news-read marker, schema version) —
+# rewritten by nvim itself with no user intent behind the value, so tracking
+# it causes cross-machine clobbering instead of useful sync. If you want to
+# sync enabled :LazyExtras again later, do it deliberately, not via this file.
+editor/.config/nvim/lazyvim.json
