@@ -93,6 +93,15 @@ for texlive_dir in /usr/local/texlive/*basic; do
     fi
 done
 
+# Packages beyond BasicTeX's default scheme, needed by beamer decks and
+# LaTeX templates in Teaching/*. tlmgr install is idempotent (skips packages
+# already at the current version), so safe to rerun on every machine.
+if command -v tlmgr >/dev/null 2>&1; then
+  echo "📄 Installing extra TeX Live packages..."
+  TEX_PACKAGES=(beamer moloch bytefield lastpage titlesec ragged2e pgfpages)
+  tlmgr install "${TEX_PACKAGES[@]}"
+fi
+
 # A Node from the nodejs.org pkg installer shadows Homebrew's node in some
 # shell contexts and causes native-module ABI mismatches (see README,
 # "Node.js policy"). On Intel Macs /usr/local/bin/node IS Homebrew's (a

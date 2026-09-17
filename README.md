@@ -140,6 +140,13 @@ automatically (chowns the tree to the current user if it isn't already).
 If `tlmgr install <pkg>` still asks for a password after running `install.sh`,
 chown it manually: `sudo chown -R $(whoami) /usr/local/texlive/*basic`.
 
+Packages beyond BasicTeX's default scheme (beamer, moloch, bytefield,
+lastpage, titlesec, ragged2e, pgfpages — needed by the Teaching/* beamer
+decks and worksheet templates) are declared in `install.sh`'s `TEX_PACKAGES`
+array and installed via `tlmgr install`, so a missing-package error on a new
+machine should only ever happen once: add the package to that array instead
+of just running `tlmgr install <pkg>` locally.
+
 ## Claude Code configuration
 
 `~/.claude/settings.json`, `~/.claude/agents/`, and friends are **not** stowed.
