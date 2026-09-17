@@ -140,6 +140,27 @@ automatically (chowns the tree to the current user if it isn't already).
 If `tlmgr install <pkg>` still asks for a password after running `install.sh`,
 chown it manually: `sudo chown -R $(whoami) /usr/local/texlive/*basic`.
 
+## Claude Code configuration
+
+`~/.claude/settings.json`, `~/.claude/agents/`, and friends are **not** stowed.
+They're generated/managed by the [GSD](https://github.com/open-gsd/gsd-core)
+plugin installer, and `~/.claude.json` (which holds MCP servers, among a lot
+of other live app state — machine ID, per-project path cache, oauth account,
+caches) is actively rewritten by Claude Code itself. Symlinking either risks
+corruption or leaking machine-specific state onto the other machine.
+
+Instead, `install.sh` re-runs the same declarative commands on each machine:
+
+- **GSD**: `npx -y --package=@opengsd/gsd-core@latest -- gsd-core --claude --global`
+- **Plugins**: `claude plugin marketplace add` + `claude plugin install` (ekctl-skill, obsidian-skills, last30days-skill)
+- **MCP servers**: `claude mcp add ... -s user`, guarded by `claude mcp get` so it's idempotent
+
+MCP servers needing an API key (`brave-search`, `semantic-scholar`) read it
+from `~/.config/local.env` — see `.env` note below. Add a new MCP server to
+both machines by adding one `claude mcp add` line to `install.sh` (see the
+"Configuring Claude MCP servers" block) rather than editing `~/.claude.json`
+by hand.
+
 ## Notes
 
 - The `.zshrc` sources configuration from `~/.config/shell/` for shared settings

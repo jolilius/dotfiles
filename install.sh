@@ -4,6 +4,10 @@ set -e
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BREWFILE="$DOTFILES_DIR/homebrew/.config/homebrew/Brewfile"
 
+# Machine-local secrets (gitignored) — needed below for MCP server API keys.
+# See shell/.config/local.env.example.
+[ -f "$HOME/.config/local.env" ] && source "$HOME/.config/local.env"
+
 if command -v brew >/dev/null 2>&1; then
   echo "🍺 Installing Homebrew dependencies..."
   # ekctl's formula builds from source and depends_on the full Xcode app
@@ -28,10 +32,43 @@ if command -v qmd >/dev/null 2>&1 && [[ ! -e "$HOME/.agents/skills/qmd" ]]; then
   qmd skill install --global --yes
 fi
 
-# ekctl skill (Calendar/Reminders), distributed as a Claude plugin marketplace
+# GSD (workflow framework): installs/updates its own hooks, agents, and
+# settings under ~/.claude — this is a generated-state directory, not
+# something to stow, so re-run its own installer on each machine instead.
+if command -v npx >/dev/null 2>&1; then
+  npx -y --package=@opengsd/gsd-core@latest -- gsd-core --claude --global
+fi
+
+# Claude plugin marketplaces
 if command -v claude >/dev/null 2>&1; then
   claude plugin marketplace add schappim/ekctl-skill
   claude plugin install ekctl-skill@ekctl-skill
+
+  claude plugin marketplace add kepano/obsidian-skills
+  claude plugin install obsidian@obsidian-skills
+
+  claude plugin marketplace add mvanhorn/last30days-skill
+  claude plugin install last30days@last30days-skill
+fi
+
+echo "🔌 Configuring Claude MCP servers (user scope)..."
+# Declarative source of truth for MCP servers, since ~/.claude.json is live
+# app state (machine IDs, caches, project paths) and unsafe to symlink.
+# `claude mcp get` exits 1 if missing, so these are safe to re-run.
+if command -v claude >/dev/null 2>&1; then
+  claude mcp get arxiv >/dev/null 2>&1 || claude mcp add arxiv -s user -- uvx arxiv-mcp-server
+
+  if [[ -n "$BRAVE_API_KEY" ]]; then
+    claude mcp get brave-search >/dev/null 2>&1 || claude mcp add brave-search -s user -e BRAVE_API_KEY="$BRAVE_API_KEY" -- npx -y @brave/brave-search-mcp-server
+  else
+    echo "  ⚠️  BRAVE_API_KEY not set (see ~/.config/local.env.example) — skipping brave-search"
+  fi
+
+  if [[ -n "$SEMANTIC_SCHOLAR_API_KEY" ]]; then
+    claude mcp get semantic-scholar >/dev/null 2>&1 || claude mcp add semantic-scholar -s user -e SEMANTIC_SCHOLAR_API_KEY="$SEMANTIC_SCHOLAR_API_KEY" -- uvx --from git+https://github.com/akapet00/semantic-scholar-mcp semantic-scholar-mcp
+  else
+    echo "  ⚠️  SEMANTIC_SCHOLAR_API_KEY not set (see ~/.config/local.env.example) — skipping semantic-scholar"
+  fi
 fi
 
 echo "🪝 Enabling auto-push git hook for this repo..."
