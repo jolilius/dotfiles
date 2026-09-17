@@ -3,30 +3,36 @@ tap "schappim/ekctl", trusted: true
 tap "thdxg/tap", trusted: true
 tap "ttscoff/thelab", trusted: true
 tap "unsecretised/tap"
-# Library for command-line editing
-brew "readline"
-# Bourne-Again SHell, a UNIX command interpreter
-brew "bash"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
+# Library for command-line editing
+brew "readline"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Zstandard is a real-time compression algorithm
 brew "zstd"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Browser automation CLI for AI agents
+brew "agent-browser"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Securely send things from one computer to another
+brew "croc"
 # TIFF library and utilities
 brew "libtiff"
 # Diff that understands syntax
 brew "difftastic"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Global DNS propagation checker TUI
+brew "dnsglobe"
 # Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
 # More intuitive version of du in rust
 brew "dust"
-# Lean Theorem Prover installer and version manager
-brew "elan-init"
 # Modern, maintained replacement for ls
 brew "eza"
 # Like neofetch, but much faster because written mostly in C
@@ -39,30 +45,34 @@ brew "sdl2-compat"
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# GitHub command-line tool
-brew "gh"
 # Secure hashing function
 brew "libb2"
+# Generic library support script
+brew "libtool"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# GitHub command-line tool
+brew "gh"
 # Remote repository management made easy
 brew "ghq"
 # Distributed revision control system
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Cinematic Git commit replay tool
+brew "gitlogue"
 # Render markdown on the CLI
 brew "glow"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
 # Get events and tasks from the macOS calendar database
 brew "ical-buddy"
-# Generic library support script
-brew "libtool"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick-full"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
+# Find what models run on your hardware
+brew "llmfit"
 # CLI for Mermaid library
 brew "mermaid-cli"
 # Deep clean and optimize your Mac
@@ -73,8 +83,10 @@ brew "mosh"
 brew "neovim"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
-# PDF rendering library (based on the xpdf-3.0 code base)
-brew "poppler"
+# Adds support for geographic objects to PostgreSQL
+brew "postgis"
+# Object-relational database system
+brew "postgresql@18", restart_service: :changed, link: true
 # Modern replacement for ps written in Rust
 brew "procs"
 # Generic syntax highlighter
@@ -83,6 +95,8 @@ brew "pygments"
 brew "ripgrep"
 # AI-powered command-line workflow tool for developers
 brew "qwen-code"
+# Cross-platform network monitoring terminal UI with deep packet inspection
+brew "rustnet"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -95,6 +109,8 @@ brew "tmux"
 brew "typst"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # General-purpose lossless data-compression library
@@ -134,9 +150,7 @@ cask "inkscape"
 cask "opencode-desktop"
 # AI usage tracker for Cursor, Claude Code, Codex, Copilot and more
 cask "openusage"
-# Scientific and technical publishing system built on Pandoc
-cask "quarto"
-# Tree-based macOS app switcher
+# Tree-based app switcher
 cask "unsecretised/tap/sxitch", trusted: true
 # Quicklook extension for source files
 cask "syntax-highlight"
